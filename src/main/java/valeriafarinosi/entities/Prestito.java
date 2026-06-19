@@ -15,6 +15,14 @@ public class Prestito {
     @Column(name = "id_prestito")
     private UUID id_prestito;
 
+    @ManyToOne
+    @JoinColumn(name = "id_elemento")
+    private Elementi elemento;
+
+    @ManyToOne
+    @JoinColumn(name = "id_utente")
+    private Utente utente;
+
     @Column(name = "data_inizio_prestito")
     private LocalDate dataInizioPrestito;
 

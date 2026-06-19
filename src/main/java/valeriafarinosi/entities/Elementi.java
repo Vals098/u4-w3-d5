@@ -3,6 +3,7 @@ package valeriafarinosi.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -16,6 +17,7 @@ public abstract class Elementi {
     @Column(name = "id_elemento")
     private UUID idElemento;
 
+
     @Column(name = "codice_isbn")
     private String codiceISBN;
 
@@ -27,6 +29,9 @@ public abstract class Elementi {
 
     @Column(name = "numero_pagine")
     private int numeroPagine;
+
+    @OneToMany(mappedBy = "elemento")
+    private List<Prestito> prestiti;
 
     protected Elementi() {
     }

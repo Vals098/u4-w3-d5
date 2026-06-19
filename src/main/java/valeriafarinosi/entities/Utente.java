@@ -4,6 +4,7 @@ package valeriafarinosi.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -27,6 +28,9 @@ public class Utente {
 
     @Column(name = "numero_tessera")
     private int numeroTessera;
+
+    @OneToMany(mappedBy = "utente")
+    private List<Prestito> prestiti;
 
     protected Utente() {
     }
