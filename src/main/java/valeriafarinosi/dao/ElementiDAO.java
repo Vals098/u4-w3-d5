@@ -121,5 +121,61 @@ public class ElementiDAO {
         return risultati.getFirst();
     }
 
+    //    FIND BY ANNO DI PUBBLICAZIONE
+    public List<Elementi> findByAnnoPubblicaizone(int annoPubblicazione) {
+
+        TypedQuery<Elementi> query = em.createQuery(
+                "SELECT e FROM Elementi e WHERE e.annoPubblicazione = :anno_pubblicazione",
+                Elementi.class
+        );
+
+        query.setParameter("anno_pubblicazione", annoPubblicazione);
+
+        List<Elementi> risultati = query.getResultList();
+
+        if (risultati.isEmpty()) {
+            throw new ElementoNonTrovatoException("Nessun elemento pubblicato nell'anno " + annoPubblicazione + " trovato.");
+        }
+
+        return risultati;
+    }
+
+    //    FIND BY AUTORE
+    public List<Libro> findByAuthor(String autore) {
+
+        TypedQuery<Libro> query = em.createQuery(
+                "SELECT l FROM Libro l WHERE l.autore = :autore",
+                Libro.class
+        );
+
+        query.setParameter("autore", autore);
+
+        List<Libro> risultati = query.getResultList();
+
+        if (risultati.isEmpty()) {
+            throw new ElementoNonTrovatoException(autore);
+        }
+
+        return risultati;
+    }
+
+    //    FIND BY TITOLO
+    public List<Elementi> findByTitle(String titolo) {
+
+        TypedQuery<Elementi> query = em.createQuery(
+                "SELECT e FROM Elementi e WHERE e.titolo LIKE :titolo",
+                Elementi.class
+        );
+
+        query.setParameter("titolo", "%" + titolo + "%");
+
+        List<Elementi> risultati = query.getResultList();
+
+        if (risultati.isEmpty()) {
+            throw new ElementoNonTrovatoException(titolo);
+        }
+
+        return risultati;
+    }
 
 }

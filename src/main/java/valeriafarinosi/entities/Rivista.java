@@ -29,7 +29,9 @@ public class Rivista extends Elementi {
     @Override
     public String toString() {
         return "Rivista{" +
-                "periodicita=" + periodicita +
+                "id=" + getIdElemento() +
+                ", titolo='" + getTitolo() + '\'' +
+                ", periodicita=" + periodicita +
                 '}';
     }
 }

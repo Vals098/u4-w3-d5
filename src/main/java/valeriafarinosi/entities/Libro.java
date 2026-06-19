@@ -37,7 +37,9 @@ public class Libro extends Elementi {
     @Override
     public String toString() {
         return "Libro{" +
-                "autore='" + autore + '\'' +
+                "id=" + getIdElemento() +
+                ", titolo='" + getTitolo() + '\'' +
+                ", autore='" + autore + '\'' +
                 ", genere=" + genere +
                 '}';
     }
