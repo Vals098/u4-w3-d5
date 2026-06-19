@@ -7,8 +7,8 @@ import jakarta.persistence.Persistence;
 import valeriafarinosi.dao.ElementiDAO;
 import valeriafarinosi.dao.PrestitiDAO;
 import valeriafarinosi.dao.UtentiDAO;
-import valeriafarinosi.entities.Elementi;
 import valeriafarinosi.entities.Libro;
+import valeriafarinosi.entities.Prestito;
 import valeriafarinosi.entities.Rivista;
 import valeriafarinosi.entities.Utente;
 import valeriafarinosi.enums.Genere;
@@ -81,6 +81,7 @@ public class Application {
 //            System.out.println(e.getMessage());
 //        }
 
+
 //        FIND BY ISBN
 //        try {
 //            Elementi elemento = ed.findByISBN("LIE9235KJG9");
@@ -91,6 +92,7 @@ public class Application {
 //        } catch (ElementoNonTrovatoException e) {
 //            System.out.println(e.getMessage());
 //        }
+
 
 //        FIND BY ANNO PUBBLICAZIONE
 //        try {
@@ -103,6 +105,7 @@ public class Application {
 //            System.out.println(e.getMessage());
 //        }
 
+
 //        FIND BY AUTORE
 //        try {
 //            List<Libro> elementi = ed.findByAuthor("Paulo Coelho");
@@ -113,6 +116,7 @@ public class Application {
 //        } catch (ElementoNonTrovatoException e) {
 //            System.out.println(e.getMessage());
 //        }
+
 
 //        FIND BY TITOLO
 //        try {
@@ -125,17 +129,26 @@ public class Application {
 //            System.out.println(e.getMessage());
 //        }
 
+
 //        FIND ELEMENTO IN PRESTITO BY NUMERO TESSERA
+//        try {
+//            List<Elementi> elementi = pd.findElemInPrestitoByTessera(7463);
+//
+//            System.out.println("Elementi trovati:");
+//            elementi.forEach(System.out::println);
+//
+//        } catch (PrestitoNonTrovatoException e) {
+//            System.out.println(e.getMessage());
+//        }
+
+//    FIND PRESTITI SCADUTI E NON ANCORA RESTITUITI
         try {
-            List<Elementi> elementi = pd.findElemInPrestitoByTessera(7463);
+            List<Prestito> prestito = pd.findPrestitiScaduti();
 
-            System.out.println("Elementi trovati:");
-            elementi.forEach(System.out::println);
-
+            System.out.println("Prestiti trovati:");
+            prestito.forEach(System.out::println);
         } catch (PrestitoNonTrovatoException e) {
             System.out.println(e.getMessage());
         }
-
-
     }
 }

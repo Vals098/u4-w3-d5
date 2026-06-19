@@ -7,6 +7,7 @@ import valeriafarinosi.entities.Elementi;
 import valeriafarinosi.entities.Prestito;
 import valeriafarinosi.exceptions.PrestitoNonTrovatoException;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -59,4 +60,21 @@ public class PrestitiDAO {
         return risultati;
 
     }
+
+//    FIND PRESTITI SCADUTI E NON ANCORA RESTITUITI
+
+    public List<Prestito> findPrestitiScaduti() {
+        TypedQuery<Prestito> query = em.createQuery(
+                "SELECT p FROM Prestito p " +
+                        "WHERE p.dataInizioPrestito < :limite " +
+                        "AND p.dataRestituzioneEffettiva IS NULL",
+                Prestito.class
+        );
+
+        query.setParameter("limite", LocalDate.now().minusDays(30));
+
+        return query.getResultList();
+    }
+
+
 }
