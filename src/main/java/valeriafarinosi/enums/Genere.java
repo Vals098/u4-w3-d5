@@ -1,0 +1,5 @@
+package valeriafarinosi.enums;
+
+public enum Genere {
+    AVVENTURA, AZIONE, FANTASY, ROMANTICO, THRILLER, PSICOLOGICO, HORROR, STORICO, BAMBINI_E_RAGAZZI, CLASSICI, ALTRO
+}
