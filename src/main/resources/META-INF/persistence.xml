@@ -3,6 +3,11 @@
              xmlns="http://xmlns.jcp.org/xml/ns/persistence"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
     <persistence-unit name="u4-w3-d5">
+        <class>valeriafarinosi.entities.Elementi</class>
+        <class>valeriafarinosi.entities.Rivista</class>
+        <class>valeriafarinosi.entities.Libro</class>
+        <class>valeriafarinosi.entities.Utente</class>
+        <class>valeriafarinosi.entities.Prestito</class>
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/u4-w3-d5"/>
             <property name="jakarta.persistence.jdbc.user" value="admin"/>
