@@ -7,13 +7,16 @@ import jakarta.persistence.Persistence;
 import valeriafarinosi.dao.ElementiDAO;
 import valeriafarinosi.dao.PrestitiDAO;
 import valeriafarinosi.dao.UtentiDAO;
+import valeriafarinosi.entities.Elementi;
 import valeriafarinosi.entities.Libro;
 import valeriafarinosi.entities.Rivista;
 import valeriafarinosi.entities.Utente;
 import valeriafarinosi.enums.Genere;
 import valeriafarinosi.enums.Periodicita;
+import valeriafarinosi.exceptions.PrestitoNonTrovatoException;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Application {
 
@@ -121,6 +124,17 @@ public class Application {
 //        } catch (ElementoNonTrovatoException e) {
 //            System.out.println(e.getMessage());
 //        }
+
+//        FIND ELEMENTO IN PRESTITO BY NUMERO TESSERA
+        try {
+            List<Elementi> elementi = pd.findElemInPrestitoByTessera(7463);
+
+            System.out.println("Elementi trovati:");
+            elementi.forEach(System.out::println);
+
+        } catch (PrestitoNonTrovatoException e) {
+            System.out.println(e.getMessage());
+        }
 
 
     }

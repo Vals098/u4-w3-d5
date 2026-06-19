@@ -2,9 +2,12 @@ package valeriafarinosi.dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
+import valeriafarinosi.entities.Elementi;
 import valeriafarinosi.entities.Prestito;
 import valeriafarinosi.exceptions.PrestitoNonTrovatoException;
 
+import java.util.List;
 import java.util.UUID;
 
 public class PrestitiDAO {
@@ -35,5 +38,25 @@ public class PrestitiDAO {
         if (found == null) throw new PrestitoNonTrovatoException(idPrestito);
 
         return found;
+    }
+
+    //    FIND ELEMENTO IN PRESTITO BY NUMERO TESSERA
+    public List<Elementi> findElemInPrestitoByTessera(int numeroTessera) {
+
+        TypedQuery<Elementi> query = em.createQuery(
+                "SELECT p.elemento FROM Prestito p WHERE p.utente.numeroTessera = :numeroTessera AND p.dataRestituzioneEffettiva IS NULL",
+                Elementi.class
+        );
+
+        query.setParameter("numeroTessera", numeroTessera);
+
+        List<Elementi> risultati = query.getResultList();
+
+        if (risultati.isEmpty()) {
+            throw new PrestitoNonTrovatoException("La tessera con numero " + numeroTessera + " non ha attualmente elementi in prestito.");
+        }
+
+        return risultati;
+
     }
 }
