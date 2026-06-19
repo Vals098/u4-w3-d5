@@ -18,7 +18,7 @@ public abstract class Elementi {
     private UUID idElemento;
 
 
-    @Column(name = "codice_isbn")
+    @Column(name = "codice_isbn", unique = true)
     private String codiceISBN;
 
     @Column(name = "titolo")

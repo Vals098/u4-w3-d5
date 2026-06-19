@@ -28,27 +28,31 @@ public class Application {
         UtentiDAO ud = new UtentiDAO(em);
         PrestitiDAO pd = new PrestitiDAO(em);
 
+//        NEW RECORDS
         Utente u1 = new Utente("Valeria", "Farinosi", LocalDate.of(1998, 05, 30), 7463);
         Utente u2 = new Utente("Giulio", "Cariglio", LocalDate.of(1967, 11, 03), 4387);
 
-        Libro l1 = new Libro("KLSH9843TIHLK", "L'Alchimista", 1988, 208, "Paulo Coelho", Genere.ALTRO);
-        Libro l2 = new Libro("IFOEUEHGEKJJK", "Se questo è un uomo", 1947, 176, "Primo Levi", Genere.STORICO);
+        Libro l1 = new Libro("KLSH9843TIHLK", "L'Alchimista", 1988, 208, "Paulo Coelho", Genere.ROMANZO);
+        Libro l2 = new Libro("IFOEUEHGEKJJK", "Se questo è un uomo", 1947, 176, "Primo Levi", Genere.BIOGRAFICO);
 
         Rivista r1 = new Rivista("LFDUEFO873U", "Internazionale", 2026, 87, Periodicita.SETTIMANALE);
         Rivista r2 = new Rivista("LIE9235KJG9", "Focus", 2026, 134, Periodicita.MENSILE);
 
-//        FROM DB
+//       RECORDS FROM DB
+        Utente u1FromDB = ud.findUtenteById("1e7b5dd6-ca64-409c-ae66-36c86c2a192c");
+        Utente u2FromDB = ud.findUtenteById("e5be2b7c-1778-4da4-ab0f-d3b39e6e6778");
 
-        Utente u1FromDB = ud.findUtenteById("73cdc9d2-adeb-4c6d-9242-ff48ff8b532a");
-        Utente u2FromDB = ud.findUtenteById("6022f819-c55b-462a-bc6c-e1bf9700fd6b");
+        Libro l1FromDB = ed.findLibroById("821e932a-b0ae-4d5b-85d3-3e3354524318");
+        Libro l2FromDB = ed.findLibroById("ab8259c5-da3c-4be2-91aa-37da8f718be1");
 
-        Libro l1FromDB = ed.findLibroById("8f8d6832-096f-4f5e-a169-f77aa6cee2ee");
-        Libro l2FromDB = ed.findLibroById("291a1ddb-ffd3-4c9f-bc90-048b18ef62f8");
+        Rivista r1FromDB = ed.findRivistaById("e15b3d06-d0aa-41db-b7ba-265e714d9d80");
+        Rivista r2FromDB = ed.findRivistaById("dfa36093-a8a7-4f31-94b5-e2a6f4619499");
 
 
         Prestito p1 = new Prestito(u1FromDB, l1FromDB);
+        Prestito p2 = new Prestito(u2FromDB, r1FromDB);
 
-
+//           SAVE
 //        ud.save(u1);
 //        ud.save(u2);
 //
@@ -58,6 +62,14 @@ public class Application {
 //        ed.save(r2);
 
         pd.save(p1);
+        pd.save(p2);
+
+//        GET ALL ELEMENTS
+//        ed.getAllElements().forEach(System.out::println);
+
+
+//        DELETE BY ISBN
+//        ed.deleteByISBN("LIE9235KJG9");
 
 
     }

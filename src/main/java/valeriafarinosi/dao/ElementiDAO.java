@@ -2,6 +2,7 @@ package valeriafarinosi.dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
 import valeriafarinosi.entities.Elementi;
 import valeriafarinosi.entities.Libro;
 import valeriafarinosi.entities.Rivista;
@@ -9,6 +10,7 @@ import valeriafarinosi.exceptions.ElementoNonTrovatoException;
 import valeriafarinosi.exceptions.LibroNonTrovatoException;
 import valeriafarinosi.exceptions.RivistaNonTrovataException;
 
+import java.util.List;
 import java.util.UUID;
 
 public class ElementiDAO {
@@ -61,6 +63,62 @@ public class ElementiDAO {
         if (found == null) throw new RivistaNonTrovataException(idRivista);
 
         return found;
+    }
+
+
+    //    GET ALL
+    public List<Elementi> getAllElements() {
+        TypedQuery<Elementi> query =
+                em.createQuery(
+                        "SELECT e FROM Elementi e",
+                        Elementi.class);
+
+        return query.getResultList();
+    }
+
+    //    DELETE BY ISBN
+    public void deleteByISBN(String codiceISBN) {
+
+
+        TypedQuery<Elementi> query = em.createQuery(
+                "SELECT e FROM Elementi e WHERE e.codiceISBN = :isbn",
+                Elementi.class
+        );
+        query.setParameter("isbn", codiceISBN);
+
+        List<Elementi> risultati = query.getResultList();
+
+        if (risultati.isEmpty()) {
+            throw new ElementoNonTrovatoException(codiceISBN);
+        }
+
+        Elementi found = risultati.getFirst();
+
+
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        em.remove(found);
+        transaction.commit();
+
+    }
+
+    //    FIND BY ISBN
+    public Elementi findByISBN(String codiceISBN) {
+
+        TypedQuery<Elementi> query = em.createQuery(
+                "SELECT e FROM Elementi e WHERE e.codiceISBN = :isbn",
+                Elementi.class
+        );
+
+        query.setParameter("isbn", codiceISBN);
+
+        List<Elementi> risultati = query.getResultList();
+
+        if (risultati.isEmpty()) {
+            throw new ElementoNonTrovatoException(codiceISBN);
+        }
+
+        return risultati.getFirst();
     }
 
 
