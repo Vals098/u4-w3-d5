@@ -20,7 +20,8 @@ public class Libro extends Elementi {
     protected Libro() {
     }
 
-    public Libro(String autore, Genere genere) {
+    public Libro(String codiceISBN, String titolo, int annoPubblicazione, int numeroPagine, String autore, Genere genere) {
+        super(codiceISBN, titolo, annoPubblicazione, numeroPagine);
         this.autore = autore;
         this.genere = genere;
     }
