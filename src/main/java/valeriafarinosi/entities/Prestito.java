@@ -13,7 +13,7 @@ public class Prestito {
     @Id
     @GeneratedValue
     @Column(name = "id_prestito")
-    private UUID id_prestito;
+    private UUID idPrestito;
 
     @ManyToOne
     @JoinColumn(name = "id_elemento")
@@ -33,12 +33,14 @@ public class Prestito {
     protected Prestito() {
     }
 
-    public Prestito(LocalDate dataInizioPrestito) {
+    public Prestito(Utente utente, Elementi elemento) {
+        this.utente = utente;
+        this.elemento = elemento;
         this.dataInizioPrestito = LocalDate.now();
     }
 
-    public UUID getId_prestito() {
-        return id_prestito;
+    public UUID getIdPrestito() {
+        return idPrestito;
     }
 
     public LocalDate getDataInizioPrestito() {
@@ -60,9 +62,10 @@ public class Prestito {
     @Override
     public String toString() {
         return "Prestito{" +
-                "id_prestito=" + id_prestito +
+                "idPrestito=" + idPrestito +
+                ", elemento=" + elemento +
+                ", utente=" + utente +
                 ", dataInizioPrestito=" + dataInizioPrestito +
-                ", dataRestituzionePrevista=" + getDataRestituzioneEffettiva() +
                 ", dataRestituzioneEffettiva=" + dataRestituzioneEffettiva +
                 '}';
     }

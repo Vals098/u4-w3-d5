@@ -3,6 +3,9 @@ package valeriafarinosi.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import valeriafarinosi.entities.Utente;
+import valeriafarinosi.exceptions.UtenteNonTrovatoException;
+
+import java.util.UUID;
 
 public class UtentiDAO {
 
@@ -22,6 +25,15 @@ public class UtentiDAO {
         transaction.commit();
 
         System.out.println("L'utente " + newUtente + " è stato salvato correttamente!");
+    }
+
+    //    FIND UTENTE BY ID
+    public Utente findUtenteById(String idUtente) {
+        Utente found = em.find(Utente.class, UUID.fromString(idUtente));
+
+        if (found == null) throw new UtenteNonTrovatoException(idUtente);
+
+        return found;
     }
 
 

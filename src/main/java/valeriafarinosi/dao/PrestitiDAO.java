@@ -3,6 +3,9 @@ package valeriafarinosi.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import valeriafarinosi.entities.Prestito;
+import valeriafarinosi.exceptions.PrestitoNonTrovatoException;
+
+import java.util.UUID;
 
 public class PrestitiDAO {
 
@@ -22,5 +25,15 @@ public class PrestitiDAO {
         transaction.commit();
 
         System.out.println("Il prestito " + newPrestito + " è stato salvato correttamente!");
+    }
+
+
+    //    FIND PRESTITO BY ID
+    public Prestito findPrestitoById(String idPrestito) {
+        Prestito found = em.find(Prestito.class, UUID.fromString(idPrestito));
+
+        if (found == null) throw new PrestitoNonTrovatoException(idPrestito);
+
+        return found;
     }
 }

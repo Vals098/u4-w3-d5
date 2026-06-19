@@ -3,6 +3,8 @@ package valeriafarinosi.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import valeriafarinosi.entities.Elementi;
+import valeriafarinosi.entities.Libro;
+import valeriafarinosi.entities.Rivista;
 import valeriafarinosi.exceptions.ElementoNonTrovatoException;
 import valeriafarinosi.exceptions.LibroNonTrovatoException;
 import valeriafarinosi.exceptions.RivistaNonTrovataException;
@@ -41,8 +43,8 @@ public class ElementiDAO {
 
 
     //    FIND LIBRO BY ID
-    public Elementi findLibroById(String idLibro) {
-        Elementi found = em.find(Elementi.class, UUID.fromString(idLibro));
+    public Libro findLibroById(String idLibro) {
+        Libro found = em.find(Libro.class, UUID.fromString(idLibro));
         // ovvero: SELECT * FROM elementi WHERE id = :idElemento
 
         if (found == null) throw new LibroNonTrovatoException(idLibro);
@@ -52,8 +54,8 @@ public class ElementiDAO {
 
 
     //    FIND RIVISTA BY ID
-    public Elementi findRivistaById(String idRivista) {
-        Elementi found = em.find(Elementi.class, UUID.fromString(idRivista));
+    public Rivista findRivistaById(String idRivista) {
+        Rivista found = em.find(Rivista.class, UUID.fromString(idRivista));
         // ovvero: SELECT * FROM elementi WHERE id = :idElemento
 
         if (found == null) throw new RivistaNonTrovataException(idRivista);
