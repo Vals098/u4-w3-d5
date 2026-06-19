@@ -1,4 +1,5 @@
 ENG
+
 Choice of Inheritance Strategy:
 After immediately ruling out the TABLE_PER_CLASS strategy due to its clear disadvantages when dealing with relationships in an inheritance hierarchy, I carefully considered the choice between JOINED and SINGLE_TABLE.
 In this case, I opted for SINGLE_TABLE because the provided example includes only two subclasses, each with very few specific attributes. As a result, the single table would never become excessively complex, 
@@ -14,6 +15,7 @@ The relationship is clearly ManyToMany, and since it was necessary to create and
 
 
 ITA
+
 Scelta tipo di Strategia di Ereditarietà:
 Dopo aver escluso immediatamente la TABLE_PER_CLASS per evidente svantaggio in termini di relazioni quando è presente ereditarietà, ho riflettuto a lungo sulla scelta tra JOINED e SINGLE_TABLE.
 In questo caso ho optato per la SINGLE_TABLE poichè l'esempio fornito ha solo due sottoclassi le quali hanno pochissimi attributi specifici. La tabella singola quindi non sarebbe mai venuta troppo complicata,
