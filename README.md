@@ -13,4 +13,4 @@ Dopo aver escluso immediatamente la TABLE_PER_CLASS per evidente svantaggio in t
 In questo caso ho optato per la SINGLE_TABLE poichè l'esempio fornito ha solo due sottoclassi le quali hanno pochissimi attributi specifici. La tabella singola quindi non sarebbe mai venuta troppo complicata,
 eliminando in principio uno degli svantaggi peggiori di questa metodologia. Inoltre sapendo di dover lavorare sui dati tramite query, in questa maniera avrei potuto utilizzare metodi più semplici e veloci.
 Dunque avrei avuto il massimo dei risultati con il minimo degli svantaggi da parte di questa strategia.
-Sebbene la io preferisca la JOINED a livello concettuale e visivo, in questo caso non era giustificabile in termini di efficienza.
+Sebbene io preferisca la JOINED a livello concettuale e visivo, in questo caso non era giustificabile in termini di efficienza.
